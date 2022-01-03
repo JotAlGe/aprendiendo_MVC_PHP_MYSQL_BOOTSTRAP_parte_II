@@ -18,4 +18,17 @@ class User extends Connection
         $statement->bindValue(':birthday', $birthday);
         return $statement->execute();
     }
+
+    function validate_fields($name, $lastname, $nick, $email, $pass, $photo, $birthday)
+    {
+        $message = '';
+        if (empty($name)) $message = 'Debe ingresar un nombre. <br>';
+        if (empty($lastname)) $message .= 'Debe ingresar un apellido. <br>';
+        if (empty($nick)) $message .= 'Debe ingresar un nombre de usuario. <br>';
+        if (empty($email)) $message .= 'Debe ingresar una dirección de email. <br>';
+        if (empty($pass)) $message .= 'Debe ingresar una contraseña. <br>';
+        if (empty($birthday)) $message .= 'Debe ingresar su fecha de nacimiento. <br>';
+
+        return $message;
+    }
 }
