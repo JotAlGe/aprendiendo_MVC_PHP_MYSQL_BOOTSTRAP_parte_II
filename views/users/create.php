@@ -1,25 +1,33 @@
 <div class="registration-form">
-    <form>
+    <form method="POST" enctype="multipart/form-data">
         <div class="form-icon">
             <span><i class="icon icon-user"></i></span>
         </div>
         <div class="form-group">
-            <input type="text" class="form-control item" id="username" placeholder="Username">
+            <input type="text" class="form-control item" id="username" name="username" placeholder="Username">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control item" id="password" placeholder="Password">
+            <input type="text" class="form-control item" id="lastname" name="lastname" placeholder="Last name">
         </div>
         <div class="form-group">
-            <input type="text" class="form-control item" id="email" placeholder="Email">
+            <input type="text" class="form-control item" id="nickname" name="nickname" placeholder="Nick name">
         </div>
         <div class="form-group">
-            <input type="text" class="form-control item" id="phone-number" placeholder="Phone Number">
+            <input type="text" class="form-control item" id="email" name="email" placeholder="Email">
         </div>
         <div class="form-group">
-            <input type="text" class="form-control item" id="birth-date" placeholder="Birth Date">
+            <input type="password" class="form-control item" id="password" name="pass" placeholder="Password">
         </div>
         <div class="form-group">
-            <button type="button" class="btn btn-block create-account">Create Account</button>
+            <input type="file" class="form-control item" id="photo" name="photo">
+        </div>
+
+        <div class="form-group">
+            <label for="birth-date">Birthday date</label>
+            <input type="date" class="form-control item" id="birth-date" name="birthday" placeholder="Birth Date">
+        </div>
+        <div class="form-group">
+            <button type="submit" name="btn-create" class="btn btn-block create-account">Create Account</button>
         </div>
     </form>
     <div class="social-media">

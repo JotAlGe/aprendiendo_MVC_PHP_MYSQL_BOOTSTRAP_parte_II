@@ -1,11 +1,10 @@
 <?php
-require_once 'config/Connection.php';
-class PagesController extends Connection
+
+class PagesController
 {
     function index()
     {
-        $conn = new Connection;
-        $conn->connect();
+
         include_once 'views/pages/index.php';
     }
     function error()
