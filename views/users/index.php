@@ -1,1 +1,3 @@
-pagina principal de usuarios
+<?php
+/* session_start();
+echo $_SESSION['name']; */

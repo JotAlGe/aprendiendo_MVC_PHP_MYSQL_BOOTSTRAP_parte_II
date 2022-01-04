@@ -19,7 +19,7 @@ class User extends Connection
         return $statement->execute();
     }
 
-    function validate_fields($name, $lastname, $nick, $email, $pass, $photo, $birthday)
+    function validate_fields($name, $lastname, $nick, $email, $pass, $birthday)
     {
         $message = '';
         if (empty($name)) $message = 'Debe ingresar un nombre. <br>';
@@ -30,5 +30,37 @@ class User extends Connection
         if (empty($birthday)) $message .= 'Debe ingresar su fecha de nacimiento. <br>';
 
         return $message;
+    }
+
+    function get_data_login($email, $pass)
+    {
+        $data = [];
+        $encript = md5($pass);
+        $sql = "SELECT `id_user`, `cod_level`, `name_user`, `lastname_user`, `nick_user`, `email_user`, `pass_user`, `photo_user`, `date_register`, `birthday` 
+                 FROM `users` 
+                WHERE `email_user`= :email_user 
+                  AND `pass_user`= :pass_user";
+        $statement = $this->connect()->prepare($sql);
+        $statement->bindParam('email_user', $email);
+        $statement->bindParam('pass_user', $encript);
+        $statement->execute();
+        $resul = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($resul as $row) {
+            $data['ID'] = $row['id_user'];
+            $data['LEV'] = $row['cod_level'];
+            $data['NAME'] = $row['name_user'];
+            $data['LAST'] = $row['lastname_user'];
+            $data['NICK'] = $row['nick_user'];
+            $data['EMAIL'] = $row['email_user'];
+            $data['PASS'] = $row['pass_user'];
+
+            $data['PHOTO'] = $row['photo_user'] == '' ? 'fulanito.png' : $row['photo_user'];
+
+            $data['DATREG'] = $row['date_register'];
+            $data['BIRTHDAY'] = $row['birthday'];
+        }
+
+        return $data;
     }
 }

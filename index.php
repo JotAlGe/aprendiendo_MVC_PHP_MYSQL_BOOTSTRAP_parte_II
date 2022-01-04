@@ -1,5 +1,5 @@
 <?php
-$controller = 'controller';
+$controller = 'pages';
 $action = 'index';
 
 if (isset($_GET['controller']) && isset($_GET['action'])) {

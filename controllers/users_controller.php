@@ -12,7 +12,7 @@ class UsersController
         $message = '';
         if (isset($_POST['btn-create'])) {
             $conn = new User;
-            $message = $conn->validate_fields($_POST['username'], $_POST['lastname'], $_POST['nickname'], $_POST['email'], md5($_POST['pass']), $_FILES['photo']['name'], $_POST['birthday']);
+            $message = $conn->validate_fields($_POST['username'], $_POST['lastname'], $_POST['nickname'], $_POST['email'], md5($_POST['pass']), $_POST['birthday']);
             if (empty($message)) {
                 $registered = $conn->createUser(2, $_POST['username'], $_POST['lastname'], $_POST['nickname'], $_POST['email'], md5($_POST['pass']), $_FILES['photo']['name'], $_POST['birthday']);
                 $messageOk = '';
