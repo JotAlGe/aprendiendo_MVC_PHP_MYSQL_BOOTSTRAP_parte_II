@@ -2,6 +2,7 @@
 require_once 'config/Connection.php';
 class User extends Connection
 {
+    /////////////// user register //////////////////////////////////// 
     function createUser($lev, $name, $lastname, $nick, $email, $pass, $photo = '', $birthday)
     {
         $sql = "INSERT INTO `users` (`id_user`, `cod_level`, `name_user`, `lastname_user`, `nick_user`, `email_user`, `pass_user`, `photo_user`, `date_register`, `birthday`)
@@ -19,6 +20,7 @@ class User extends Connection
         return $statement->execute();
     }
 
+    /////////////////// validate ////////////////////////////////
     function validate_fields($name, $lastname, $nick, $email, $pass, $birthday)
     {
         $message = '';
@@ -32,6 +34,7 @@ class User extends Connection
         return $message;
     }
 
+    /// //////////////// get data login /////////////////////////////////////////
     function get_data_login($email, $pass)
     {
         $data = [];

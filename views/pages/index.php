@@ -2,7 +2,10 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-
+if (empty($_SESSION['name'])) {
+    header("Location: ?controller=pages&action=login");
+    exit;
+}
 require_once 'views/includes/nav.php';
 require_once 'views/includes/form_post.php';
 ?>

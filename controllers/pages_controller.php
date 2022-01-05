@@ -1,14 +1,33 @@
 <?php
 
 require_once 'models/users.php';
+require_once 'models/posts.php';
+
 class PagesController extends User
 {
     /////////// index //////////////////////
     function index()
     {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        $post = new Post;
+        $message = '';
+        $errorPost = '';
 
+        // enviado por post
+        if (isset($_POST['btn-post'])) {
+            $message = $post->validate_post($_POST['post'], $_FILES['img-post']['name'], $_FILES['img-post']['type']);
+            if (empty($message)) {
+                $inserted = $post->create_posting($_SESSION['id'], $_POST['post'], $_FILES['img-post']['name']);
+                if ($inserted != true) {
+                    $errorPost = 'Error al postear.';
+                }
+            }
+        }
         include_once 'views/pages/index.php';
     }
+
     /////////// ERROR //////////////////////
     function error()
     {

@@ -9,7 +9,7 @@ class Connection
     function __construct()
     {
         $this->host = 'localhost';
-        $this->db = 'db_soc_net';
+        $this->db = 'b_soc_net';
         $this->user = 'root';
         $this->pass = '1234';
     }
