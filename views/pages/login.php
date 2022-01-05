@@ -10,7 +10,7 @@
                         <h3 class="title">Login Form</h3>
                         <div class="form-group">
                             <span class="input-icon"><i class="fa fa-user"></i></span>
-                            <input class="form-control" type="email" name="email" placeholder="Username">
+                            <input class="form-control" type="email" name="email" placeholder="Email">
                         </div>
                         <div class="form-group">
                             <span class="input-icon"><i class="fa fa-lock"></i></span>
@@ -20,7 +20,7 @@
                             <div class="alert alert-danger" role="alert">
                                 <?php echo $message; ?></div>
                         <?php endif; ?>
-                        <button class="btn signin" name="btn-login">Log in</button>
+                        <input class="btn signin" type="submit" name="btn-login" value="Login" />
                         <!-- <span class="forgot-pass"><a href="#">Lost password?</a></span> -->
                         <span class="register"><a href="?controller=users&action=create">Register / Signup</a></span>
                     </form>

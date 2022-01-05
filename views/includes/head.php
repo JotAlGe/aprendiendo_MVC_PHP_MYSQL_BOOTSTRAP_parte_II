@@ -13,3 +13,4 @@
     <link rel="stylesheet" href="assets/css/login.css">
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/create_user.css">
+    <link rel="stylesheet" href="assets/css/form_post.css">

@@ -1,21 +1,28 @@
 <?php
-/* session_start(); */
+
 require_once 'models/users.php';
 class PagesController extends User
 {
+    /////////// index //////////////////////
     function index()
     {
 
         include_once 'views/pages/index.php';
     }
+    /////////// ERROR //////////////////////
     function error()
     {
         include_once 'views/pages/error.php';
     }
+
+    /////////// login //////////////////////
     function login()
     {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         $message = '';
-        if (isset($_POST['btn-login'])) {
+        if (!empty($_POST['btn-login'])) {
 
             $logged = new User;
             $data = $logged->get_data_login($_POST['email'], $_POST['pass']);
@@ -34,10 +41,19 @@ class PagesController extends User
 
                 header('Location:?controller=pages&action=index');
                 exit;
+                /* echo '<pre>';
+                print_r($_SESSION);
+                echo '</pre>'; */
             } else {
                 $message = '¡Datos incorrectos!';
             }
         }
         include_once 'views/pages/login.php';
+    }
+
+    /////////// logout //////////////////////
+    function logout()
+    {
+        include_once 'views/pages/logout.php';
     }
 }

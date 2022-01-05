@@ -40,9 +40,11 @@ class User extends Connection
                  FROM `users` 
                 WHERE `email_user`= :email_user 
                   AND `pass_user`= :pass_user";
+
         $statement = $this->connect()->prepare($sql);
         $statement->bindParam('email_user', $email);
         $statement->bindParam('pass_user', $encript);
+
         $statement->execute();
         $resul = $statement->fetchAll(PDO::FETCH_ASSOC);
 
@@ -55,7 +57,7 @@ class User extends Connection
             $data['EMAIL'] = $row['email_user'];
             $data['PASS'] = $row['pass_user'];
 
-            $data['PHOTO'] = $row['photo_user'] == '' ? 'fulanito.png' : $row['photo_user'];
+            $data['PHOTO'] = $row['photo_user'];
 
             $data['DATREG'] = $row['date_register'];
             $data['BIRTHDAY'] = $row['birthday'];
