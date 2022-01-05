@@ -59,7 +59,7 @@ form{
     outline: none;
 }
 textarea:focus{
-    border: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
 }
 form .button{
     display: grid;
@@ -75,10 +75,31 @@ form .button{
     border-radius: .4rem;
     color: #fff;
     font-weight: bold;
-
+    
     grid-column: 10/12;
     grid-row: 2 / 4;
+    transition: all .2s ease;
 }
 input[type="submit"]:hover{
     background: linear-gradient(#10ac84, #1dd1a1);
+    letter-spacing: .2em;
+}
+
+.subir{
+    border-radius: .4rem;
+    grid-column: 9;
+    grid-row: 2 / 5;
+    
+    width: auto;
+    height: 2em;
+    padding: 5px 10px;
+    background: #f55d3e;
+    color:#fff;
+    border:0px solid #fff;
+    transition: all .2s ease;
+}
+ 
+.subir:hover{
+    background-color:rgba(245, 93, 62, .8);
+    cursor: pointer;
 }
