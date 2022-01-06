@@ -44,4 +44,19 @@ class Post extends Connection
         }
         return $name;
     }
+
+    //////////// GET POSTS //////////////////////
+    function get_posts()
+    {
+        $sql = "SELECT p.id_post, p.id_user, p.desc_post, p.date_post, p.photo_post,
+                       u.name_user, u.lastname_user, u.nick_user, u.photo_user
+                  FROM posts as p, users as u 
+                 WHERE p.id_user = u.id_user
+                 ORDER BY p.date_post DESC";
+
+        $statement = $this->connect()->prepare($sql);
+        $statement->execute();
+        $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $posts;
+    }
 }

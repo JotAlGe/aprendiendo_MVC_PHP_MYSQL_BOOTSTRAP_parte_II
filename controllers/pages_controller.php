@@ -14,6 +14,10 @@ class PagesController extends User
         $message = '';
         $errorPost = '';
 
+        // new instance
+        $post = new Post;
+        $post_result = $post->get_posts();
+
         // enviado por post
         if (isset($_POST['btn-post'])) {
             $dateTime = new DateTime();
@@ -24,8 +28,6 @@ class PagesController extends User
                 $name_photo = NULL;
             }
 
-            // new instance
-            $post = new Post;
 
             // validation
             $message = $post->validate_post($_POST['post'], $_FILES['img-post']['name'], $_FILES['img-post']['type']);
@@ -35,6 +37,7 @@ class PagesController extends User
 
             // insert a post
             $inserted = $post->create_posting($_SESSION['id'], $_POST['post'], $name_photo);
+            header('Location: ?controller=pages&action=index');
         }
 
         include_once 'views/pages/index.php';
