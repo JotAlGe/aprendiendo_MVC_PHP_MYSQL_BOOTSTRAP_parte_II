@@ -12,7 +12,7 @@ class Post extends Connection
         }
 
         if (!empty($photo_name)) {
-            if (!(strpos($photo_type, 'jpeg')  || strpos($photo_type, 'jpg') || strpos($photo_type, 'png'))) {
+            if (!(strpos($photo_type, 'jpeg')  || strpos($photo_type, 'jpg') || strpos($photo_type, 'png') || strpos($photo_type, 'JPG'))) {
                 $message = 'La imágen debe ser de tipo jpeg, jpg o png.';
             }
         }

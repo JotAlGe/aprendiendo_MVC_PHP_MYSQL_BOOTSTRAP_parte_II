@@ -36,8 +36,11 @@ class PagesController extends User
             $moved = move_uploaded_file($_FILES['img-post']['tmp_name'], 'assets/imgs/posts/' . $name_photo);
 
             // insert a post
-            $inserted = $post->create_posting($_SESSION['id'], $_POST['post'], $name_photo);
-            header('Location: ?controller=pages&action=index');
+            if (empty($message)) {
+                $inserted = $post->create_posting($_SESSION['id'], $_POST['post'], $name_photo);
+
+                header('Location: ?controller=pages&action=index');
+            }
         }
 
         include_once 'views/pages/index.php';
