@@ -11,20 +11,32 @@ class PagesController extends User
         if (!isset($_SESSION)) {
             session_start();
         }
-        $post = new Post;
         $message = '';
         $errorPost = '';
 
         // enviado por post
         if (isset($_POST['btn-post'])) {
-            $message = $post->validate_post($_POST['post'], $_FILES['img-post']['name'], $_FILES['img-post']['type']);
-            if (empty($message)) {
-                $inserted = $post->create_posting($_SESSION['id'], $_POST['post'], $_FILES['img-post']['name']);
-                if ($inserted != true) {
-                    $errorPost = 'Error al postear.';
-                }
+            $dateTime = new DateTime();
+            // rename image
+            if (!empty($_FILES['img-post']['name'])) {
+                $name_photo = $dateTime->getTimestamp() . '_' . basename($_FILES['img-post']['name']);
+            } else {
+                $name_photo = NULL;
             }
+
+            // new instance
+            $post = new Post;
+
+            // validation
+            $message = $post->validate_post($_POST['post'], $_FILES['img-post']['name'], $_FILES['img-post']['type']);
+
+            // move uploaded file to server
+            $moved = move_uploaded_file($_FILES['img-post']['tmp_name'], 'assets/imgs/posts/' . $name_photo);
+
+            // insert a post
+            $inserted = $post->create_posting($_SESSION['id'], $_POST['post'], $name_photo);
         }
+
         include_once 'views/pages/index.php';
     }
 

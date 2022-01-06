@@ -31,4 +31,17 @@ class Post extends Connection
 
         return $statement->execute();
     }
+
+    //////////  GET POST ///////////////////////////////
+    function set_name_photo($photo)
+    {
+        $dateTime = new DateTime();
+        // rename image
+        if (!empty($photo)) {
+            $name = $dateTime->getTimestamp() . '_' . basename($photo);
+        } else {
+            $name = NULL;
+        }
+        return $name;
+    }
 }
