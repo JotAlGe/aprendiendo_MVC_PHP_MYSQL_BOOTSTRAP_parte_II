@@ -19,7 +19,7 @@ require_once 'views/includes/form_post.php';
 
             <div class="col-md-8 mx-auto">
                 <div class="media g-mb-30 media-comment">
-                    <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" src="assets/imgs/users/<?php echo $post_result[$i]['photo_user']; ?>" alt="Image Description">
+                    <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" src="assets/imgs/users/<?php echo !empty($post_result[$i]['photo_user']) ? $post_result[$i]['photo_user'] : 'fulanito.png'; ?>" alt="Image Description">
                     <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
                         <div class="g-mb-15">
                             <h5 class="h5 g-color-gray-dark-v1 mb-0"><?php echo $post_result[$i]['nick_user']; ?></h5>

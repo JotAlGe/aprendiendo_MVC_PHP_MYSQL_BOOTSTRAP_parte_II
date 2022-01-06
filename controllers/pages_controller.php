@@ -78,9 +78,6 @@ class PagesController extends User
 
                 header('Location:?controller=pages&action=index');
                 exit;
-                /* echo '<pre>';
-                print_r($_SESSION);
-                echo '</pre>'; */
             } else {
                 $message = '¡Datos incorrectos!';
             }
