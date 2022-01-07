@@ -68,4 +68,22 @@ class User extends Connection
 
         return $data;
     }
+
+    /////// get data user ///////////////////
+    function get_data_user($id)
+    {
+        $data_user = [];
+        $sql = "SELECT `id_user`, `cod_level`, `name_user`, `lastname_user`, `nick_user`, `email_user`, `pass_user`, `photo_user`, `date_register`, `birthday` 
+                  FROM`users` 
+                 WHERE id_user = :id_user";
+        $statement = $this->connect()->prepare($sql);
+        $statement->bindParam(':id_user', $id);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($result as $row) {
+            $data_user[] = $row;
+        }
+        return $data_user;
+    }
 }

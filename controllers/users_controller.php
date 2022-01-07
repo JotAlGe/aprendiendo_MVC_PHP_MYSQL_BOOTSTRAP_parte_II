@@ -5,6 +5,12 @@ class UsersController
 {
     function index()
     {
+        #print_r($_GET['id']);
+        $user = new User;
+        $data_user = $user->get_data_user($_GET['id']);
+        echo '<pre>';
+        print_r($data_user);
+        echo '</pre>';
         include_once 'views/users/index.php';
     }
     function create()
