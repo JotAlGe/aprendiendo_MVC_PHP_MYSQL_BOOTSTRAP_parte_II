@@ -3,7 +3,7 @@
     <section class="data_user">
         <div class="card" style="width: 18rem;">
             <div class="card-body">
-                <img class="card-img-top rounded-circle img-fluid" width="20" height="80" src="assets/imgs/users/<?php echo $_SESSION['photo']; ?>" alt="Card image cap">
+                <img class="card-img-top rounded-circle img-fluid" width="20" height="80" src="assets/imgs/users/<?php echo is_null($_SESSION['photo']) ? 'fulanito.png' : $_SESSION['photo']; ?>" alt="Card image cap">
             </div>
         </div>
         <div class="card-footer"><?php echo $_SESSION['name'] . ' ' . $_SESSION['lastname']; ?></div>
