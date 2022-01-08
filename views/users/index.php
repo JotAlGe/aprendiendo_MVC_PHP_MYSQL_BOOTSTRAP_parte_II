@@ -16,11 +16,11 @@ session_start();
                         <div class="cover">
                             <div class="gray-shade"></div>
                             <figure>
-                                <img src="assets/imgs/users/<?php echo is_null($data_user[$i]['photo_user']) ? 'fulanito.png' : $data_user[$i]['photo_user']; ?>" class="img-fluid" alt="profile cover">
+                                <img src="assets/imgs/users/<?php echo is_null($data_user[$i]['photo_user']) ? 'fulanito.png' : $data_user[$i]['photo_user']; ?>" class="img-fluid" alt="profile cover" style="max-height: 500px; object-fit: cover;">
                             </figure>
                             <div class="cover-body d-flex justify-content-between align-items-center">
                                 <div>
-                                    <img class="profile-pic" src="assets/imgs/users/<?php echo is_null($data_user[$i]['photo_user']) ? 'fulanito.png' : $data_user[$i]['photo_user']; ?>" alt="profile">
+                                    <img class="profile-pic" src="assets/imgs/users/<?php echo is_null($data_user[$i]['photo_user']) ? 'fulanito.png' : $data_user[$i]['photo_user']; ?>" alt="profile" style="height:150px; width:150px">
                                     <span class="profile-name"><?php echo $data_user[$i]['name_user'] . ' ' . $data_user[$i]['lastname_user'] ?></span>
                                 </div>
 
@@ -175,8 +175,11 @@ session_start();
                                             <div class="d-flex align-items-center">
                                                 <img class="img-xs rounded-circle" src="assets/imgs/users/<?php echo $post_id[$j]['photo_user']; ?>" alt="">
                                                 <div class="ml-2">
-                                                    <p><?php echo $post_id[$j]['name_user'] . ' ' . $post_id[$j]['lastname_user']; ?></p>
-                                                    <p class="tx-11 text-muted"><?php echo $post_id[$j]['date_post']; ?></p>
+                                                    <a href="?controller=users&action=index&id=<?php echo $data_user[$i]['id_user']; ?>">
+                                                        <p><?php echo $post_id[$j]['name_user'] . ' ' . $post_id[$j]['lastname_user']; ?>
+                                                        </p>
+                                                    </a>
+                                                    <p class=" tx-11 text-muted"><?php echo $post_id[$j]['date_post']; ?></p>
                                                 </div>
                                             </div>
                                             <div class="dropdown">
