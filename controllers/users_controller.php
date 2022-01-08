@@ -1,16 +1,20 @@
 <?php
 require_once 'models/users.php';
+require_once 'models/posts.php';
 
 class UsersController
 {
     function index()
     {
-        #print_r($_GET['id']);
+        if (!empty($_SESSION)) {
+            session_start();
+        }
+
         $user = new User;
+        $post_by_id = new Post;
         $data_user = $user->get_data_user($_GET['id']);
-        echo '<pre>';
-        print_r($data_user);
-        echo '</pre>';
+        $post_id = $post_by_id->get_posts_by_user($_GET['id']);
+
         include_once 'views/users/index.php';
     }
     function create()
