@@ -23,14 +23,15 @@ class PagesController extends User
             $dateTime = new DateTime();
             // rename image
             if (!empty($_FILES['img-post']['name'])) {
-                $name_photo = $dateTime->getTimestamp() . '_' . basename($_FILES['img-post']['name']);
+                $no_space = str_replace(' ', '', $_FILES['img-post']['name']);
+                $name_photo = $dateTime->getTimestamp() . '_' . basename($no_space);
             } else {
                 $name_photo = NULL;
             }
 
 
             // validation
-            $message = $post->validate_post($_POST['post'], $_FILES['img-post']['name'], $_FILES['img-post']['type']);
+            $message = $post->validate_post($_POST['post'], $name_photo, $_FILES['img-post']['type']);
 
             // move uploaded file to server
             $moved = move_uploaded_file($_FILES['img-post']['tmp_name'], 'assets/imgs/posts/' . $name_photo);

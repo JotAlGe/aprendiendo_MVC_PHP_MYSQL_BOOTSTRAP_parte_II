@@ -26,16 +26,19 @@ class UsersController
             $dateTime = new DateTime();
             // rename image
             if (!empty($_FILES['photo']['name'])) {
-                $photo_user = $dateTime->getTimestamp() . '_' . basename($_FILES['photo']['name']);
+                // photo name no spaces
+                $no_space = str_replace(' ', '', $_FILES['photo']['name']);
+                $photo_user = $dateTime->getTimestamp() . '_' . basename($no_space);
             } else {
                 $photo_user = NULL;
             }
 
             $conn = new User;
-            $message = $conn->validate_fields($_POST['username'], $_POST['lastname'], $_POST['nickname'], $_POST['email'], md5($_POST['pass']), $_POST['birthday']);
+            $message = $conn->validate_fields($_POST['username'], $_POST['lastname'], $_POST['nickname'], $_POST['email'], md5($_POST['pass']), $_POST['birthday'], $_FILES['photo']['type']);
 
             // move to directory
             move_uploaded_file($_FILES['photo']['tmp_name'], 'assets/imgs/users/' . $photo_user);
+
             if (empty($message)) {
                 $registered = $conn->createUser(2, $_POST['username'], $_POST['lastname'], $_POST['nickname'], $_POST['email'], $_POST['pass'], $photo_user, $_POST['birthday']);
                 $messageOk = '';

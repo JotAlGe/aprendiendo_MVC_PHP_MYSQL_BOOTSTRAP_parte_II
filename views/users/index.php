@@ -173,7 +173,7 @@ session_start();
                                     <div class="card-header">
                                         <div class="d-flex align-items-center justify-content-between">
                                             <div class="d-flex align-items-center">
-                                                <img class="img-xs rounded-circle" src="assets/imgs/users/<?php echo $post_id[$j]['photo_user']; ?>" alt="">
+                                                <img class="img-xs rounded-circle" src="assets/imgs/users/<?php echo (empty($post_id[$j]['photo_user']) ? 'fulanito.png' : $post_id[$j]['photo_user']); ?>" alt="">
                                                 <div class="ml-2">
                                                     <a href="?controller=users&action=index&id=<?php echo $data_user[$i]['id_user']; ?>">
                                                         <p><?php echo $post_id[$j]['name_user'] . ' ' . $post_id[$j]['lastname_user']; ?>
@@ -265,19 +265,20 @@ session_start();
                         <div class="col-md-12 grid-margin">
                             <div class="card rounded">
                                 <div class="card-body">
-                                    <h6 class="card-title">latest photos</h6>
+                                    <h6 class="card-title"><?php echo (empty($photos[$i]['photo_post']) ? $data_user[$i]['nick_user'] . ', aún no hay fotos publicadas.' : 'latest photos') ?> </h6>
                                     <div class="latest-photos">
                                         <div class="row">
                                             <?php
                                             for ($l = 0; $l < count($photos); $l++) {
-                                                if (!empty($photos[$l]['photo_post']))
+                                                if (!empty($photos[$l]['photo_post'])) {
                                             ?>
-                                                <div class="col-md-4">
-                                                    <figure>
-                                                        <img class="img-fluid" src="assets/imgs/posts/<?php echo $photos[$l]['photo_post']; ?>" alt="" style="max-height: 100%;">
-                                                    </figure>
-                                                </div>
+                                                    <div class="col-md-4">
+                                                        <figure>
+                                                            <img class="img-fluid" src="assets/imgs/posts/<?php echo $photos[$l]['photo_post']; ?>" alt="" style="max-height: 100%;">
+                                                        </figure>
+                                                    </div>
                                             <?php
+                                                }
                                             }
                                             ?>
 
