@@ -12,7 +12,7 @@ class Post extends Connection
         }
 
         if (!empty($photo_name)) {
-            if (!(strpos($photo_type, 'jpeg')  || strpos($photo_type, 'jpg') || strpos($photo_type, 'png') || strpos($photo_type, 'JPG'))) {
+            if (!(strpos($photo_type, 'jpeg')  || strpos($photo_type, 'jpg') || strpos($photo_type, 'png'))) {
                 $message = 'La imágen debe ser de tipo jpeg, jpg o png.';
             }
         }
@@ -69,6 +69,24 @@ class Post extends Connection
                   WHERE p.id_user = u.id_user
                     AND p.id_user = :id_user
                     ORDER BY p.date_post DESC";
+        $statement = $this->connect()->prepare($sql);
+        $statement->bindParam(':id_user', $id, PDO::PARAM_INT);
+        $statement->execute();
+        $post = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $post;
+    }
+
+    /// ///////// GET PHOTOS BY ID //////////////////
+    function get_photos_by_id($id)
+    {
+        $sql = "SELECT p.id_post, p.id_user, p.desc_post, p.date_post, p.photo_post,
+                       u.name_user, u.lastname_user, u.nick_user, u.photo_user
+                  FROM posts as p, users as u 
+                  WHERE p.id_user = u.id_user
+                    AND p.id_user = :id_user
+                    AND p.photo_post != ''
+                ORDER BY p.date_post DESC";
+
         $statement = $this->connect()->prepare($sql);
         $statement->bindParam(':id_user', $id, PDO::PARAM_INT);
         $statement->execute();

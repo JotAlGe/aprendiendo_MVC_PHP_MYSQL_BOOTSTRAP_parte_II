@@ -15,6 +15,7 @@ class UsersController
         $data_user = $user->get_data_user($_GET['id']);
         $post_id = $post_by_id->get_posts_by_user($_GET['id']);
         $all_users = $user->get_all_users();
+        $photos = $post_by_id->get_photos_by_id($_GET['id']);
 
         include_once 'views/users/index.php';
     }

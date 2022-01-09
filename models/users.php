@@ -87,7 +87,7 @@ class User extends Connection
     function get_all_users()
     {
         $sql = "SELECT `id_user`, `cod_level`, `name_user`, `lastname_user`, `nick_user`, `email_user`, `pass_user`, `photo_user`, `date_register`, `birthday` 
-                  FROM `users`";
+                  FROM `users` LIMIT 6";
         $statement = $this->connect()->prepare($sql);
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
