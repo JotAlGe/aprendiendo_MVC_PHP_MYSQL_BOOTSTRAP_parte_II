@@ -34,12 +34,12 @@ class UsersController
             }
 
             $conn = new User;
-            $message = $conn->validate_fields($_POST['username'], $_POST['lastname'], $_POST['nickname'], $_POST['email'], md5($_POST['pass']), $_POST['birthday'], $_FILES['photo']['type']);
-
-            // move to directory
-            move_uploaded_file($_FILES['photo']['tmp_name'], 'assets/imgs/users/' . $photo_user);
+            $message = $conn->validate_fields($_POST['username'], $_POST['lastname'], $_POST['nickname'], $_POST['email'], md5($_POST['pass']), $_POST['birthday'], $photo_user, $_FILES['photo']['type'], $_FILES['photo']['error']);
 
             if (empty($message)) {
+                // move to directory
+                move_uploaded_file($_FILES['photo']['tmp_name'], 'assets/imgs/users/' . $photo_user);
+
                 $registered = $conn->createUser(2, $_POST['username'], $_POST['lastname'], $_POST['nickname'], $_POST['email'], $_POST['pass'], $photo_user, $_POST['birthday']);
                 $messageOk = '';
                 if ($registered == true) $messageOk = 'Se ha registrado al usuario ' . $_POST['nickname'];

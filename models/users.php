@@ -21,7 +21,7 @@ class User extends Connection
     }
 
     /////////////////// validate ////////////////////////////////
-    function validate_fields($name, $lastname, $nick, $email, $pass, $birthday, $photo_type)
+    function validate_fields($name, $lastname, $nick, $email, $pass, $birthday, $photo_name, $photo_type, $error)
     {
         $message = '';
         if (empty($name)) $message = 'Debe ingresar un nombre. <br>';
@@ -30,10 +30,13 @@ class User extends Connection
         if (empty($email)) $message .= 'Debe ingresar una dirección de email. <br>';
         if (empty($pass)) $message .= 'Debe ingresar una contraseña. <br>';
         if (empty($birthday)) $message .= 'Debe ingresar su fecha de nacimiento. <br>';
-        if (!empty($photo_type)) {
-            if (!strpos($photo_type, 'image/jpeg')  || !strpos($photo_type, 'image/jpg') || !strpos($photo_type, 'image/png'))
-                $message .= 'La imagen debe ser de tipo jpeg, jpg o png. <br>';
+
+        if ($photo_type == "image/jpeg" || $photo_type == "image/jpg" || $photo_type == "image/png") {
+            $message .= '';
+        } else {
+            $message .= 'La imagen debe ser de tipo jpeg, jpg o png. <br>';
         }
+        if ($error != 0) $message .= 'Error en la imágen. Intente con otra...';
 
         return $message;
     }
@@ -91,7 +94,7 @@ class User extends Connection
     function get_all_users()
     {
         $sql = "SELECT `id_user`, `cod_level`, `name_user`, `lastname_user`, `nick_user`, `email_user`, `pass_user`, `photo_user`, `date_register`, `birthday` 
-                  FROM `users` LIMIT 6";
+                  FROM `users` LIMIT 10";
         $statement = $this->connect()->prepare($sql);
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);

@@ -265,7 +265,7 @@ session_start();
                         <div class="col-md-12 grid-margin">
                             <div class="card rounded">
                                 <div class="card-body">
-                                    <h6 class="card-title"><?php echo (empty($photos[$i]['photo_post']) ? $data_user[$i]['nick_user'] . ', aún no hay fotos publicadas.' : 'latest photos') ?> </h6>
+                                    <h6 class="card-title"><?php echo (empty($photos[$i]['photo_post']) ? $data_user[$i]['nick_user'] . ', aún no tiene fotos publicadas.' : 'latest photos') ?> </h6>
                                     <div class="latest-photos">
                                         <div class="row">
                                             <?php

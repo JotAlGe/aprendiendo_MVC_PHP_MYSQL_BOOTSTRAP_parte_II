@@ -4,16 +4,16 @@
             <span><i class="icon icon-user"></i></span>
         </div>
         <div class="form-group">
-            <input type="text" class="form-control item" id="username" name="username" placeholder="Username">
+            <input type="text" class="form-control item" id="username" name="username" placeholder="Username" value="<?php echo (!empty($_POST['username']) ? $_POST['username'] : '') ?>">
         </div>
         <div class="form-group">
-            <input type="text" class="form-control item" id="lastname" name="lastname" placeholder="Last name">
+            <input type="text" class="form-control item" id="lastname" name="lastname" placeholder="Last name" value="<?php echo (!empty($_POST['lastname']) ? $_POST['lastname'] : '') ?>">
         </div>
         <div class="form-group">
-            <input type="text" class="form-control item" id="nickname" name="nickname" placeholder="Nick name">
+            <input type="text" class="form-control item" id="nickname" name="nickname" placeholder="Nick name" value="<?php echo (!empty($_POST['nickname']) ? $_POST['nickname'] : '') ?>">
         </div>
         <div class="form-group">
-            <input type="text" class="form-control item" id="email" name="email" placeholder="Email">
+            <input type="text" class="form-control item" id="email" name="email" placeholder="Email" value="<?php echo (!empty($_POST['email']) ? $_POST['email'] : '') ?>">
         </div>
         <div class="form-group">
             <input type="password" class="form-control item" id="password" name="pass" placeholder="Password">
@@ -24,7 +24,7 @@
 
         <div class="form-group">
             <label for="birth-date">Birthday date</label>
-            <input type="date" class="form-control item" id="birth-date" name="birthday" placeholder="Birth Date">
+            <input type="date" class="form-control item" id="birth-date" name="birthday" placeholder="Birth Date" value="<?php echo (!empty($_POST['birthday']) ? $_POST['birthday'] : '') ?>">
         </div>
         <?php
         if (!empty($message)) :
