@@ -4,18 +4,23 @@ require_once 'config/Connection.php';
 class Post extends Connection
 {
     ////////////// POSTING VALIDATION /////////////////////
-    function validate_post($post, $photo_name, $photo_type)
+    function validate_post($post, $photo_name, $photo_type, $error)
     {
         $message = '';
         if (empty($post)) {
             $message = 'Escriba algo antes de postear...';
-        }
-
-        if (!empty($photo_name)) {
-            if (!(strpos($photo_type, 'jpeg')  || !strpos($photo_type, 'jpg') || !strpos($photo_type, 'png'))) {
-                $message = 'La imágen debe ser de tipo jpeg, jpg o png.';
+        } else {
+            if (!empty($photo_name)) {
+                if ($photo_type == "image/jpeg" || $photo_type == "image/jpg" || $photo_type == "image/png") {
+                    $message = '';
+                } else {
+                    $message = 'La imágen debe ser de tipo jpeg, jpg o png.';
+                }
             }
         }
+
+
+        if ($error != 0) $message = 'Error en la imágen. Intente con otra...';
         return $message;
     }
 

@@ -30,15 +30,17 @@ class PagesController extends User
             }
 
 
-            // validation
-            $message = $post->validate_post($_POST['post'], $name_photo, $_FILES['img-post']['type']);
 
-            // move uploaded file to server
-            $moved = move_uploaded_file($_FILES['img-post']['tmp_name'], 'assets/imgs/posts/' . $name_photo);
+            // validation
+            $message = $post->validate_post($_POST['post'], $_FILES["img-post"]["name"], $_FILES["img-post"]["type"], $_FILES['img-post']['error']);
+            /*  print_r($message); */
 
             // insert a post
             if (empty($message)) {
-                $inserted = $post->create_posting($_SESSION['id'], $_POST['post'], $name_photo);
+                // move uploaded file to server
+                move_uploaded_file($_FILES['img-post']['tmp_name'], 'assets/imgs/posts/' . $name_photo);
+
+                $post->create_posting($_SESSION['id'], $_POST['post'], $name_photo);
 
                 header('Location: ?controller=pages&action=index');
             }
