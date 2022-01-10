@@ -31,7 +31,7 @@ class User extends Connection
         if (empty($pass)) $message .= 'Debe ingresar una contraseña. <br>';
         if (empty($birthday)) $message .= 'Debe ingresar su fecha de nacimiento. <br>';
         if (!empty($photo_type)) {
-            if (!(strpos($photo_type, 'image/jpeg')  || strpos($photo_type, 'image/jpg') || strpos($photo_type, 'image/png')))
+            if (!strpos($photo_type, 'image/jpeg')  || !strpos($photo_type, 'image/jpg') || !strpos($photo_type, 'image/png'))
                 $message .= 'La imagen debe ser de tipo jpeg, jpg o png. <br>';
         }
 

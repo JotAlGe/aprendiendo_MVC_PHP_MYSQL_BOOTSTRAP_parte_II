@@ -68,7 +68,7 @@ session_start();
                                         <circle cx="8.5" cy="8.5" r="1.5"></circle>
                                         <polyline points="21 15 16 10 5 21"></polyline>
                                     </svg>
-                                    <a class="pt-1px d-none d-md-block" href="#">Photos</a>
+                                    <a class="pt-1px d-none d-md-block" href="?controller=users&action=photos&id=<?php echo $data_user[$i]['id_user']; ?>">Photos</a>
                                 </li>
                                 <li class="header-link-item ml-3 pl-3 border-left d-flex align-items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-video mr-1 icon-md">

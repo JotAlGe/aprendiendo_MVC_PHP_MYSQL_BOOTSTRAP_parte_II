@@ -56,4 +56,12 @@ class UsersController
     function delete()
     {
     }
+
+    /////////////////////////////////////////////
+    function photos()
+    {
+        $post = new Post;
+        $galery = $post->get_photos_by_id($_GET['id']);
+        include_once 'views/users/photos.php';
+    }
 }
