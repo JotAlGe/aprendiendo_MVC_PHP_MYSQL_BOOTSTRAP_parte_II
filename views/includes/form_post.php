@@ -20,7 +20,7 @@
 
         <div class="button">
             <label for="file-upload" class="subir">
-                <i class="fas fa-cloud-upload-alt"></i>
+                <!-- <i class="fas fa-cloud-upload-alt"></i> -->
                 <i class="fa fa-camera" aria-hidden="true"></i>
             </label>
             <input id="file-upload" type="file" style='display: none;' name="img-post" />

@@ -93,4 +93,23 @@ class PagesController extends User
     {
         include_once 'views/pages/logout.php';
     }
+
+    //////////////// edit post
+    function edit()
+    {
+        $post = new Post;
+        $_SESSION['post'] = $post->get_one_post($_GET['id_post']);
+
+        $_SESSION['message'] = '';
+        if (isset($_POST['update'])) {
+            if (!empty($_POST['description'])) {
+                $post->update_post($_POST['id'], $_POST['description']);
+                header('Location: ?controller=pages&action=index');
+                exit;
+            } else {
+                $_SESSION['message'] = 'No deje el campo vacío!';
+            }
+        }
+        include_once 'views/pages/edit.php';
+    }
 }

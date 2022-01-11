@@ -15,3 +15,5 @@
     <link rel="stylesheet" href="assets/css/create_user.css">
     <link rel="stylesheet" href="assets/css/profile.css">
     <link rel="stylesheet" href="assets/css/photos.css">
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/135afbfc6b.js" crossorigin="anonymous"></script>
