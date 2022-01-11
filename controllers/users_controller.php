@@ -57,11 +57,20 @@ class UsersController
     {
     }
 
-    /////////////////////////////////////////////
+    //////////////////////GET POST BY ID ///////////////////////
     function photos()
     {
         $post = new Post;
         $galery = $post->get_photos_by_id($_GET['id']);
         include_once 'views/users/photos.php';
+    }
+
+    ///////////////     ONE PHOTO   ///////////
+    function photo()
+    {
+        $post = new Post;
+        $_SESSION['one_post'] = $post->get_one_photo($_GET['id_post']);
+
+        include_once 'views/users/photo.php';
     }
 }
