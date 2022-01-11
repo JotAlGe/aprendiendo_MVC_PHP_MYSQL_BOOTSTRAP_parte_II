@@ -98,4 +98,34 @@ class Post extends Connection
         $post = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $post;
     }
+
+    ////////// GET ONE POST //////////////////////
+    function get_one_post($id_post)
+    {
+        $sql = "SELECT `id_post`, `id_user`, `desc_post`, `date_post`, `photo_post` 
+                  FROM `posts`
+                 WHERE `id_post` = :id_post";
+        $statement = $this->connect()->prepare($sql);
+        $statement->bindParam(':id_post', $id_post);
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    ///////////// UPDATE POST ////////////////////////////
+    function update_post($id_post, $desc_post)
+    {
+        try {
+            $sql = "UPDATE posts SET desc_post= :desc_post, date_post = NOW() 
+                 WHERE id_post = :id_post";
+            $statement = $this->connect()->prepare($sql);
+            $statement->bindParam('id_post', $id_post);
+            $statement->bindParam('desc_post', $desc_post);
+            $statement->execute();
+
+            return true;
+        } catch (PDOException $e) {
+            die('Error' . $e->getMessage());
+        }
+    }
 }

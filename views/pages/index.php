@@ -23,11 +23,36 @@ require_once 'views/includes/form_post.php';
                         <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" src="assets/imgs/users/<?php echo !empty($post_result[$i]['photo_user']) ? $post_result[$i]['photo_user'] : 'fulanito.png'; ?>" alt="Image Description">
                     </a>
                     <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
-                        <div class="g-mb-15">
-                            <a href="?controller=users&action=index&id=<?php echo $post_result[$i]['id_user']; ?>">
-                                <h5 class="h5 g-color-gray-dark-v1 mb-0"><?php echo $post_result[$i]['nick_user']; ?></h5>
-                            </a>
-                            <span class="g-color-gray-dark-v4 g-font-size-12"><?php echo $post_result[$i]['date_post']; ?></span>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="g-mb-15">
+
+                                    <a href="?controller=users&action=index&id=<?php echo $post_result[$i]['id_user']; ?>">
+                                        <h5 class="h5 g-color-gray-dark-v1 mb-0"><?php echo $post_result[$i]['nick_user']; ?></h5>
+                                    </a>
+                                    <span class="g-color-gray-dark-v4 g-font-size-12"><?php echo $post_result[$i]['date_post']; ?></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                            </div>
+                            <div class="col-md-1">
+
+                                <!-- edit button -->
+                                <?php
+                                if ($_SESSION['id'] == $post_result[$i]['id_user']) {
+                                ?>
+
+                                    <a href="?controller=pages&action=edit&id_post=<?php echo $post_result[$i]['id_post']; ?>">
+                                        <i class="fas fa-pencil-alt text-primary"></i>
+                                    </a>
+                                <?php
+                                }
+                                ?>
+                                <!--  -->
+                            </div>
+
+
                         </div>
                         <p><?php echo $post_result[$i]['desc_post']; ?></p>
                         <?php if ($post_result[$i]['photo_post'] != NULL) { ?>
