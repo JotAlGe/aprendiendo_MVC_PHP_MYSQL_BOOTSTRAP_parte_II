@@ -128,4 +128,18 @@ class Post extends Connection
             die('Error' . $e->getMessage());
         }
     }
+
+    //////////// GET ONE PHOTO BY ID //////////////////////
+    function get_one_photo($id_photo)
+    {
+        $sql = "SELECT p.id_post, p.id_user, p.desc_post, p.date_post, p.photo_post,
+                       u.name_user, u.lastname_user
+                  FROM posts as p, users as u
+                 WHERE p.id_user = u.id_user
+                   AND id_post = :id_post";
+        $statement = $this->connect()->prepare($sql);
+        $statement->bindParam(':id_post', $id_photo);
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

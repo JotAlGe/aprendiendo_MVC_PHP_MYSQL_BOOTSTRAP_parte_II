@@ -28,7 +28,7 @@
 
                         <div class="col-lg-4 p-4 ">
                             <div class="item-box">
-                                <a class="mfp-image" href="https://via.placeholder.com/800x540/D3D3D3/000000" title="Project Name">
+                                <a class="mfp-image" href="?controller=users&action=photo&id_post=<?php echo $galery[$i]['id_post']; ?>" title="Project Name">
                                     <img class="item-container img-fluid" src="assets/imgs/posts/<?php echo $galery[$i]['photo_post']; ?>" alt="work-img">
                                     <div class="item-mask">
                                         <div class="item-caption">
