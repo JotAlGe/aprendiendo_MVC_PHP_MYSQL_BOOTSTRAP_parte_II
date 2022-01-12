@@ -46,6 +46,7 @@ class PagesController extends User
             }
         }
 
+
         include_once 'views/pages/index.php';
     }
 
@@ -120,20 +121,13 @@ class PagesController extends User
         $pos = new Post;
         $id_post = $pos->get_one_post($_GET['id_post']);
         $like_inserted = $pos->insert_like($_SESSION['id'], $id_post[0]['id_post']);
+        $likes = $pos->get_like_by_post($id_post[0]['id_post']);
         if ($like_inserted === true) {
             header('Location:?controller=pages&action=index');
             exit;
         }
 
-
-
-        /* echo '<pre>';
-        print_r($id_post[0]['id_post']);
-        echo '</pre>';
-
-        echo '<pre>';
-        print_r($_SESSION['id']);
-        echo '</pre>'; */
+        print_r($likes);
         include_once 'views/pages/index.php';
     }
 }
