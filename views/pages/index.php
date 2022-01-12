@@ -60,26 +60,22 @@ require_once 'views/includes/form_post.php';
                         <?php if ($post_result[$i]['photo_post'] != NULL) { ?>
                             <img src="assets/imgs/posts/<?php echo $post_result[$i]['photo_post']; ?>" class="img-fluid" alt="">
                         <?php } ?>
-                        <?php
-                        $pos = new Post;
-                        $likes = $pos->get_like_by_post($post_result[$i]['id_post']);
-                        #echo '<pre>';
-                        #print_r($likes);
-                        #echo '</pre>';
-                        ?>
                         <ul class="list-inline d-sm-flex my-0">
+                            <?php
+                            $post = new Post;
+                            $likes = $post->get_like_by_post($post_result[$i]['id_post']);
+                            ?>
                             <li class="list-inline-item g-mr-20">
                                 <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="?controller=pages&action=likes&id_post=<?php echo $post_result[$i]['id_post']; ?>">
-                                    <i class="fa fa-thumbs-up g-pos-rel g-top-1 g-mr-3 text-<?php echo $_SESSION['id'] ==  $post_result[$i]['id_user'] ? 'primary' : 'secondary' ?>"></i>
-                                    <?php echo count($likes); ?>
+                                    <i class="fa fa-thumbs-up g-pos-rel g-top-1 g-mr-3 text-<?php ($_SESSION['id'] === $post_result[$i]['id_user'] ? 'primary' : 'secondary') ?>
+                                    "></i>
                                 </a>
+
+                                <?php
+                                echo count($likes);
+                                ?>
                             </li>
-                            <!-- <li class="list-inline-item g-mr-20">
-                                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
-                                    <i class="fa fa-thumbs-down g-pos-rel g-top-1 g-mr-3"></i>
-                                    34
-                                </a>
-                            </li> -->
+
                             <li class="list-inline-item ml-auto">
                                 <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
                                     <i class="fa fa-reply g-pos-rel g-top-1 g-mr-3"></i>
