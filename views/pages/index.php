@@ -6,10 +6,11 @@ if (empty($_SESSION['name'])) {
     header("Location: ?controller=pages&action=login");
     exit;
 }
+
 require_once 'views/includes/nav.php';
 require_once 'views/includes/form_post.php';
-?>
 
+?>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <div class="container">
     <div class="row">
@@ -61,7 +62,7 @@ require_once 'views/includes/form_post.php';
 
                         <ul class="list-inline d-sm-flex my-0">
                             <li class="list-inline-item g-mr-20">
-                                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="?controller=pages&action=likes&id_post=<?php echo $post_result[$i]['id_post']; ?>">
                                     <i class="fa fa-thumbs-up g-pos-rel g-top-1 g-mr-3"></i>
                                     178
                                 </a>

@@ -20,7 +20,7 @@ class Post extends Connection
         }
 
 
-        if ($error != 0) $message = 'Error en la imágen. Intente con otra...';
+        /* if ($error != 0) $message = 'Error en la imágen. Intente con otra...'; */
         return $message;
     }
 
@@ -139,6 +139,36 @@ class Post extends Connection
                    AND id_post = :id_post";
         $statement = $this->connect()->prepare($sql);
         $statement->bindParam(':id_post', $id_photo);
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /////////// INSERT LIKE ///////////
+    function insert_like($id_user, $id_post)
+    {
+
+        try {
+            $sql = "INSERT INTO likes (id_user, id_post, set_like) 
+                    VALUES (:id_user, :id_post, 1)";
+            $statement = $this->connect()->prepare($sql);
+            $statement->bindParam(':id_user', $id_user);
+            $statement->bindParam(':id_post', $id_post);
+            $statement->execute();
+
+            return true;
+        } catch (PDOException $e) {
+            die('Error ' . $e->getMessage());
+        }
+    }
+
+    ////////////// GET LIKE //////////////
+    function get_like_by_post($id_post)
+    {
+        $sql = "SELECT id_user, id_post, id_like, set_like 
+                  FROM likes 
+                 WHERE id_post = :id_post";
+        $statement = $this->connect()->prepare($sql);
+        $statement->bindParam(':id_post', $id_post);
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
