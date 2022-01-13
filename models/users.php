@@ -36,7 +36,7 @@ class User extends Connection
         } else {
             $message .= 'La imagen debe ser de tipo jpeg, jpg o png. <br>';
         }
-        if ($error != 0) $message .= 'Error en la imágen. Intente con otra...';
+        #if ($error != 0) $message .= 'Error en la imágen. Intente con otra...';
 
         return $message;
     }

@@ -10,7 +10,6 @@ if (empty($_SESSION['name'])) {
 
 require_once 'views/includes/nav.php';
 require_once 'views/includes/form_post.php';
-
 ?>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <div class="container">
@@ -64,11 +63,11 @@ require_once 'views/includes/form_post.php';
                             <?php
                             $post = new Post;
                             $likes = $post->get_like_by_post($post_result[$i]['id_post']);
+
                             ?>
                             <li class="list-inline-item g-mr-20">
                                 <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="?controller=pages&action=likes&id_post=<?php echo $post_result[$i]['id_post']; ?>">
-                                    <i class="fa fa-thumbs-up g-pos-rel g-top-1 g-mr-3 text-<?php ($_SESSION['id'] === $post_result[$i]['id_user'] ? 'primary' : 'secondary') ?>
-                                    "></i>
+                                    <i class="fa fa-thumbs-up g-pos-rel g-top-1 g-mr-3 text-secondary"></i>
                                 </a>
 
                                 <?php
