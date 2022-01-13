@@ -118,11 +118,15 @@ class PagesController extends User
     {
         session_start();
         $pos = new Post;
-
-        $inserted = $pos->insert_like($_SESSION['id'], $_GET['id_post']);
-        if ($inserted == true) {
-            header('Location: ?controller=pages&action=index');
-            exit;
+        /* */
+        $count_like = $pos->get_user_like($_SESSION['id'], $_GET['id_post']);
+        if ($count_like != 1) {
+            $pos->insert_like($_SESSION['id'], $_GET['id_post']);
         }
+
+        header('Location: ?controller=pages&action=index');
+        exit;
+
+        #include_once 'views/pages/index.php';
     }
 }

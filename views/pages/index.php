@@ -61,9 +61,8 @@ require_once 'views/includes/form_post.php';
                         <?php } ?>
                         <ul class="list-inline d-sm-flex my-0">
                             <?php
-                            $post = new Post;
-                            $likes = $post->get_like_by_post($post_result[$i]['id_post']);
-
+                            $pos = new Post;
+                            $likes = $pos->get_like_by_post($post_result[$i]['id_post']);
                             ?>
                             <li class="list-inline-item g-mr-20">
                                 <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="?controller=pages&action=likes&id_post=<?php echo $post_result[$i]['id_post']; ?>">
