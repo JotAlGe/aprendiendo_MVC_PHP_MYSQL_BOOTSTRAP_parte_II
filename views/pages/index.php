@@ -10,6 +10,7 @@ if (empty($_SESSION['name'])) {
 
 require_once 'views/includes/nav.php';
 require_once 'views/includes/form_post.php';
+
 ?>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <div class="container">
@@ -43,7 +44,6 @@ require_once 'views/includes/form_post.php';
                                 <?php
                                 if ($_SESSION['id'] == $post_result[$i]['id_user']) {
                                 ?>
-
                                     <a href="?controller=pages&action=edit&id_post=<?php echo $post_result[$i]['id_post']; ?>">
                                         <i class="fas fa-pencil-alt text-primary"></i>
                                     </a>

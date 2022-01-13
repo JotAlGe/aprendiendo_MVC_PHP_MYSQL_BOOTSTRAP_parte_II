@@ -172,4 +172,19 @@ class Post extends Connection
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    /////////// GET ONE USER LIKE ////////////
+    function get_user_like($id_user, $id_post)
+    {
+        $sql = "SELECT `id_user`, `id_post`, `id_like`, `set_like` 
+                  FROM `likes` 
+                 WHERE id_user = :id_user
+                   AND id_post = :id_post";
+        $statement = $this->connect()->prepare($sql);
+        $statement->bindParam(':id_user', $id_user);
+        $statement->bindParam(':id_post', $id_post);
+        $statement->execute();
+
+        return $statement->rowCount();
+    }
 }

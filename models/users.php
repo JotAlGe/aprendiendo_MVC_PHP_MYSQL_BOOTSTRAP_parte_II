@@ -31,10 +31,13 @@ class User extends Connection
         if (empty($pass)) $message .= 'Debe ingresar una contraseña. <br>';
         if (empty($birthday)) $message .= 'Debe ingresar su fecha de nacimiento. <br>';
 
-        if ($photo_type == "image/jpeg" || $photo_type == "image/jpg" || $photo_type == "image/png") {
-            $message .= '';
-        } else {
-            $message .= 'La imagen debe ser de tipo jpeg, jpg o png. <br>';
+        if (!empty($photo_name)) {
+
+            if ($photo_type == "image/jpeg" || $photo_type == "image/jpg" || $photo_type == "image/png") {
+                $message .= '';
+            } else {
+                $message .= 'La imagen debe ser de tipo jpeg, jpg o png. <br>';
+            }
         }
         #if ($error != 0) $message .= 'Error en la imágen. Intente con otra...';
 
