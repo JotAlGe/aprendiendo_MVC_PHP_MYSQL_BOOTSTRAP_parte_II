@@ -187,4 +187,23 @@ class Post extends Connection
 
         return $statement->rowCount();
     }
+
+    //////// DELETE LIKE ///////////////////////
+    function delete_like($id_user, $id_post)
+    {
+        try {
+            $sql = "DELETE 
+                    FROM likes 
+                    WHERE id_user = :id_user
+                    AND id_post = :id_post";
+            $statement = $this->connect()->prepare($sql);
+            $statement->bindParam(':id_user', $id_user);
+            $statement->bindParam(':id_post', $id_post);
+            $statement->execute();
+
+            return true;
+        } catch (PDOException $e) {
+            die('Error ' . $e->getMessage());
+        }
+    }
 }

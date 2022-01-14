@@ -122,11 +122,11 @@ class PagesController extends User
         $count_like = $pos->get_user_like($_SESSION['id'], $_GET['id_post']);
         if ($count_like != 1) {
             $pos->insert_like($_SESSION['id'], $_GET['id_post']);
+        } else {
+            $pos->delete_like($_SESSION['id'], $_GET['id_post']);
         }
 
         header('Location: ?controller=pages&action=index');
         exit;
-
-        #include_once 'views/pages/index.php';
     }
 }
