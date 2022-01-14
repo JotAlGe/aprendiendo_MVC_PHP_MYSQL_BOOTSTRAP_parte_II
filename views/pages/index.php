@@ -66,8 +66,9 @@ require_once 'views/includes/form_post.php';
 
                             ?>
                             <li class="list-inline-item g-mr-20">
-                                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="?controller=pages&action=likes&id_post=<?php echo $post_result[$i]['id_post']; ?>">
-                                    <i class="fa fa-thumbs-up g-pos-rel g-top-1 g-mr-3 text-secondary"></i>
+
+                                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="?controller=pages&action=likes&id_post=<?php echo $post_result[$i]['id_post']; ?>" ">
+                                    <i class=" fa fa-thumbs-up g-pos-rel g-top-1 g-mr-3 text-secondary"></i>
                                 </a>
 
                                 <?php

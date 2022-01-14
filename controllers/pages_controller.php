@@ -127,6 +127,6 @@ class PagesController extends User
         }
 
         header('Location: ?controller=pages&action=index');
-        exit;
+        exit;;
     }
 }
