@@ -206,4 +206,22 @@ class Post extends Connection
             die('Error ' . $e->getMessage());
         }
     }
+
+    ///// DELETE POST ////////////////////
+    function delete_post($id_post)
+    {
+        try {
+            $sql = "DELETE
+                     FROM
+                     posts
+                    WHERE id_post = :id_post";
+            $statement = $this->connect()->prepare($sql);
+            $statement->bindParam(':id_post', $id_post);
+            $statement->execute();
+
+            return true;
+        } catch (PDOException $e) {
+            die('Error ' . $e->getMessage());
+        }
+    }
 }

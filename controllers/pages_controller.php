@@ -129,4 +129,19 @@ class PagesController extends User
         header('Location: ?controller=pages&action=index');
         exit;;
     }
+
+    //////////// delete post ///////////////////////
+    function delete()
+    {
+        $post = new Post;
+        $post_photo = $post->get_one_post($_GET['id_post']);
+
+        $deleted = $post->delete_post($_GET['id_post']);
+        if ($deleted) {
+            if (file_exists('assets/imgs/posts/' . $post_photo[0]['photo_post']))
+                unlink('assets/imgs/posts/' . $post_photo[0]['photo_post']);
+            header('Location: ?controller=pages&action=index');
+            exit;
+        };
+    }
 }

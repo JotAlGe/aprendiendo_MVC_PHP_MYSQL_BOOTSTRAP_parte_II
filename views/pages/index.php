@@ -16,9 +16,23 @@ require_once 'views/includes/form_post.php';
 <div class="container">
     <div class="row">
         <?php
-        for ($i = 0; $i < count($post_result); $i++) { ?>
+        if (!empty($_SESSION['delete_message'])) {
+        ?>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong><?php echo $_SESSION['delete_message']; ?></strong>
+            </div>
 
+            <script>
+                $(".alert").alert();
+            </script>
 
+        <?php
+        }
+        for ($i = 0; $i < count($post_result); $i++) {
+        ?>
             <div class="col-md-8 mx-auto">
                 <div class="media g-mb-30 media-comment">
                     <a href="?controller=users&action=index&id=<?php echo $post_result[$i]['id_user']; ?>">
@@ -44,11 +58,19 @@ require_once 'views/includes/form_post.php';
                                 <?php
                                 if ($_SESSION['id'] == $post_result[$i]['id_user']) {
                                 ?>
-                                    <a href="?controller=pages&action=edit&id_post=<?php echo $post_result[$i]['id_post']; ?>">
-                                        <i class="fas fa-pencil-alt text-primary"></i>
-                                    </a>
+                                    <div class="d-flex">
+                                        <a href="?controller=pages&action=edit&id_post=<?php echo $post_result[$i]['id_post']; ?>" class="mx-1">
+                                            <i class="fas fa-pencil-alt text-primary"></i>
+                                        </a>
+
+                                        <a href="?controller=pages&action=delete&id_post=<?php echo $post_result[$i]['id_post']; ?>" class="mx-1 text-danger" onclick="if(confirm('¿Desea eliminar el este post?')){return true;} else{return false}">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+
+                                    </div>
                                 <?php
                                 }
+
                                 ?>
                                 <!--  -->
                             </div>
@@ -93,3 +115,4 @@ require_once 'views/includes/form_post.php';
 
     </div>
 </div>
+<?php require_once 'views/includes/modal-delete.php'; ?>
