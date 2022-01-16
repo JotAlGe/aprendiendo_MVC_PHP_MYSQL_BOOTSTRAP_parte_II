@@ -73,4 +73,12 @@ class UsersController
 
         include_once 'views/users/photo.php';
     }
+
+    ////////// list users ///////////////////
+    function users()
+    {
+        $users = new User;
+        $_SESSION['users_list'] = $users->get_all_users();
+        include_once 'views/users/users.php';
+    }
 }
