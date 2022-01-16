@@ -53,9 +53,6 @@ class UsersController
     {
         include_once 'views/users/edit.php';
     }
-    function delete()
-    {
-    }
 
     //////////////////////GET POST BY ID ///////////////////////
     function photos()
@@ -80,5 +77,22 @@ class UsersController
         $users = new User;
         $_SESSION['users_list'] = $users->get_all_users();
         include_once 'views/users/users.php';
+    }
+
+    /////// delete user 
+    function delete()
+    {
+        $user = new User;
+        $user_photo = $user->get_data_user($_GET['id']);
+        $user_deleted = $user->delete_users($_GET['id']);
+
+        if ($user_deleted) {
+            if (file_exists('assets/imgs/users/' . $user_photo[0]['photo_user'])) {
+                unlink('assets/imgs/users/' . $user_photo[0]['photo_user']);
+            }
+
+            header('Location: ?controller=users&action=users');
+            exit;
+        }
     }
 }

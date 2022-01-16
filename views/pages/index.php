@@ -115,4 +115,3 @@ require_once 'views/includes/form_post.php';
 
     </div>
 </div>
-<?php require_once 'views/includes/modal-delete.php'; ?>

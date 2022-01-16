@@ -102,4 +102,19 @@ class User extends Connection
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    ////////// DELETE USER ////////////////
+    function delete_users($id)
+    {
+        try {
+            $sql = "DELETE FROM users WHERE id_user = :id_user";
+            $statement = $this->connect()->prepare($sql);
+            $statement->bindParam('id_user', $id);
+            $statement->execute();
+
+            return true;
+        } catch (PDOException $e) {
+            die('Error ' . $e->getMessage());
+        }
+    }
 }
