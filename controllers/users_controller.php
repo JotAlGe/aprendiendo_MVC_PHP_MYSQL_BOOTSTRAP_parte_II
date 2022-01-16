@@ -49,10 +49,7 @@ class UsersController
         include_once 'views/users/create.php';
     }
 
-    function edit()
-    {
-        include_once 'views/users/edit.php';
-    }
+
 
     //////////////////////GET POST BY ID ///////////////////////
     function photos()
@@ -94,5 +91,23 @@ class UsersController
             header('Location: ?controller=users&action=users');
             exit;
         }
+    }
+
+    ///// update user ///////////////
+    function edit()
+    {
+        $user = new User;
+        $_SESSION['user_edit'] = $user->get_data_user($_GET['id']);
+        $_SESSION['message_user'] = '';
+        if (isset($_POST['update_user'])) {
+            if (empty($_POST['name']) || empty($_POST['lastname']) || empty($_POST['nick']) || empty($_POST['email'])) {
+                $_SESSION['message_user'] = 'No debe dejar campos vacíos!';
+            } else {
+                $user->update_user($_GET['id'], $_POST['name'], $_POST['lastname'], $_POST['nick'], $_POST['email']);
+                header('Location: ?controller=users&action=index&id=' . $_GET['id']);
+                exit;
+            }
+        }
+        include_once 'views/users/edit.php';
     }
 }

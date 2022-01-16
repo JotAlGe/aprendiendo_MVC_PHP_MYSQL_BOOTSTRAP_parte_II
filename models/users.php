@@ -117,4 +117,25 @@ class User extends Connection
             die('Error ' . $e->getMessage());
         }
     }
+
+    ////////// UPDATE USER
+    function update_user($id, $name, $lastname, $nick, $email)
+    {
+        try {
+            $sql = "UPDATE `users`
+                       SET name_user = :name_user, lastname_user = :lastname_user, nick_user = :nick_user, email_user = :email_user
+                     WHERE id_user = :id_user";
+            $statement = $this->connect()->prepare($sql);
+            $statement->bindParam(':name_user', $name);
+            $statement->bindParam(':lastname_user', $lastname);
+            $statement->bindParam(':nick_user', $nick);
+            $statement->bindParam(':email_user', $email);
+            $statement->bindParam(':id_user', $id);
+            $statement->execute();
+
+            return true;
+        } catch (PDOException $e) {
+            die('Error ' . $e->getMessage());
+        }
+    }
 }
